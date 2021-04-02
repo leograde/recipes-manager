@@ -1,18 +1,20 @@
 import { DynamicModule } from '@nestjs/common';
 
-import { CreateRecipeUseCase } from './use-cases';
+import { createRecipeProviders } from './use-cases';
 
+/**
+ * This module relies on `RecipeDomainModule` and `RecipeInfrastructureModule`.
+ * It needs access to the `RecipeFactory` from `RecipeDomainModule` to create
+ * the Recipe entity and also to `RecipeRepository` to persis the entity into
+ * a data store.
+ */
 export class RecipeApplicationModule {
-  static register(recipeDomain: DynamicModule): DynamicModule {
+  static register(recipeDomain: DynamicModule, recipeInfrastructure: DynamicModule): DynamicModule {
     return {
       module: RecipeApplicationModule,
-      imports: [recipeDomain],
-      providers: [
-        { provide: 'ICreateRecipeUseCase', useClass: CreateRecipeUseCase },
-      ],
-      exports: [
-        { provide: 'ICreateRecipeUseCase', useClass: CreateRecipeUseCase },
-      ],
+      imports: [recipeDomain, recipeInfrastructure],
+      providers: [...createRecipeProviders],
+      exports: [...createRecipeProviders],
     };
   }
 }

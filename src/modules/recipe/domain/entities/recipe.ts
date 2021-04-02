@@ -18,11 +18,7 @@ class Recipe {
     this.ingredientQuantities = ingredientQuantities;
   }
 
-  addIngredientQuantity({
-    ingredientQuantity,
-  }: {
-    ingredientQuantity: IngredientQuantity;
-  }) {
+  addIngredientQuantity({ ingredientQuantity }: { ingredientQuantity: IngredientQuantity }) {
     this.ingredientQuantities = [
       ...this.ingredientQuantities.filter(
         ({ ingredient }) => ingredient.id === ingredientQuantity.ingredient.id,

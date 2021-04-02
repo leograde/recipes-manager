@@ -69,5 +69,15 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "_moduleAliases": {
+    "@app/*": [
+      "./dist"
+    ],
+    "@domain": ["./dist/modules/recipe/domain/index"],
+    "@application": ["./dist/modules/recipe/application/index"],
+    "@http": ["./dist/modules/recipe/http/index"],
+    "@infrastructure": ["./dist/modules/recipe/infrastructure/index"],
+    "@utils": ["./dist/utils/index"]
   }
 }

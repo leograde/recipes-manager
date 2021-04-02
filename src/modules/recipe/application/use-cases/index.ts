@@ -1,1 +1,1 @@
-export { CreateRecipeUseCase } from './create-recipe.use-case';
+export * from './create-recipe';

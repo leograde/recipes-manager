@@ -21,13 +21,7 @@ class Quantity {
   public readonly amount: number;
   public readonly measurement: MeasurementEnum;
 
-  private constructor({
-    amount,
-    measurement,
-  }: {
-    amount: number;
-    measurement: MeasurementEnum;
-  }) {
+  private constructor({ amount, measurement }: { amount: number; measurement: MeasurementEnum }) {
     this.amount = amount;
     this.measurement = measurement;
   }

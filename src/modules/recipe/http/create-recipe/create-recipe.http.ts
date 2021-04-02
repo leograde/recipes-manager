@@ -1,21 +1,17 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
+import { CreateRecipeUseCase, CREATE_RECIPE_USECASE } from '@application';
+import { CreateRecipeHttpRequestDTO } from './create-recipe.request.dto';
 
-import { CreateRecipeUseCase } from '../../application';
-
-import { CreateRecipeReqDTO } from './create-recipe.req.dto';
-
+export const CREATE_RECIPE_URL = 'recipes';
 @Controller()
 export class CreateRecipeHttp {
-  private readonly createRecipeUseCase: CreateRecipeUseCase;
-
   constructor(
-    @Inject('ICreateRecipeUseCase') createRecipeUseCase: CreateRecipeUseCase,
-  ) {
-    this.createRecipeUseCase = createRecipeUseCase;
-  }
+    @Inject(CREATE_RECIPE_USECASE)
+    private readonly createRecipeUseCase: CreateRecipeUseCase,
+  ) {}
 
-  @Post('recipes')
-  async execute(@Body() { name }: CreateRecipeReqDTO) {
-    await this.createRecipeUseCase.execute({ name });
+  @Post(CREATE_RECIPE_URL)
+  async execute(@Body() { name }: CreateRecipeHttpRequestDTO) {
+    await this.createRecipeUseCase.execute({ recipe: { name } });
   }
 }
