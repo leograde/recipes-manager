@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
-
-import { RecipeModule } from './modules';
+import { RecipeModule } from '@app/modules';
 
 @Module({
   imports: [RecipeModule],

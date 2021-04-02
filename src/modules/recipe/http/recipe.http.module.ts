@@ -1,6 +1,6 @@
 import { DynamicModule } from '@nestjs/common';
 
-import { CreateRecipeHttp } from './create-recipe/create-recipe.http';
+import { CreateRecipeHttp } from './create-recipe';
 
 /**
  * This module relies on the `RecipeApplicationModule`.
