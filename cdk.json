@@ -1,0 +1,10 @@
+{
+  "app": "yarn ts-node infra/bin/recipe-manager-backend.ts",
+  "context": {
+    "@aws-cdk/core:enableStackNameDuplicates": "true",
+    "aws-cdk:enableDiffNoFail": "true",
+    "environment": "stage",
+    "stage": {},
+    "prod": {}
+  }
+}
