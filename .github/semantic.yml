@@ -1,0 +1,16 @@
+# Configuration for the Github app: Semantic Pull Requests
+# https://github.com/zeke/semantic-pull-requests
+
+# As we use squash and merge for merging our PRs, both the titles and commits
+# need to follow conventional commits because of the way Github generates the
+# squash merge placeholder for its commit:
+# - If the PR only contains a commit, this commit will be used for the squash
+#   merge.
+# - If the PR contains several commits, the title of the PR will be used as
+#   title for the commit.
+#
+# Note: users are still able to modify the placeholder, eventually negating the
+# use of conventional commits.
+
+# Always validate the PR title AND all the commits
+titleAndCommits: true
