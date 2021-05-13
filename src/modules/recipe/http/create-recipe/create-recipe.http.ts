@@ -12,6 +12,8 @@ export class CreateRecipeHttp {
 
   @Post(CREATE_RECIPE_URL)
   async execute(@Body() { name }: CreateRecipeHttpRequestDTO) {
-    await this.createRecipeUseCase.execute({ recipe: { name } });
+    const recipe = await this.createRecipeUseCase.execute({ recipe: { name } });
+
+    return recipe;
   }
 }

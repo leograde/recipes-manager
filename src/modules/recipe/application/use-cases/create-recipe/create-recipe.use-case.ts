@@ -1,5 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { RecipeFactory, RECIPE_FACTORY, IRecipeRepository, RECIPE_REPOSITORY } from '@domain';
+import {
+  Recipe,
+  RecipeFactory,
+  RECIPE_FACTORY,
+  IRecipeRepository,
+  RECIPE_REPOSITORY,
+} from '@domain';
 
 import { ICreateRecipeUseCase, ICreateRecipeRequestDTO } from './create-recipe.use-case.interface';
 
@@ -10,9 +16,11 @@ export class CreateRecipeUseCase implements ICreateRecipeUseCase {
     @Inject(RECIPE_REPOSITORY) private readonly recipeRepository: IRecipeRepository,
   ) {}
 
-  async execute({ recipe: recipeDTO }: ICreateRecipeRequestDTO) {
+  async execute({ recipe: recipeDTO }: ICreateRecipeRequestDTO): Promise<Recipe> {
     const recipe = this.recipeFactory.createRecipe({ name: recipeDTO.name });
 
     await this.recipeRepository.save(recipe);
+
+    return recipe;
   }
 }
