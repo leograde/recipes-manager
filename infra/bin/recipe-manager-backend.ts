@@ -7,10 +7,9 @@ const recipeManagerBackendApp = new App();
 
 const environment = getEnvironment(recipeManagerBackendApp);
 
-const recipeManagerBackendId = `recipe-manager-backend-${environment}`;
 const recipeManagerBackendStack = new RecipeManagerBackendStack(
   recipeManagerBackendApp,
-  recipeManagerBackendId,
+  `recipe-manager-backend-${environment}`,
   {},
 );
 
