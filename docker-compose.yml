@@ -7,7 +7,7 @@ services:
       context: .
       target: development
       dockerfile: Dockerfile
-    command: yarn run start:dev
+    command: yarn start:dev
     environment: 
       - DB_HOST=postgres
       - DB_PORT=5432
@@ -16,10 +16,10 @@ services:
       - DB_PASSWORD=recipe_manager_backend_database_password
     ports: 
       - 3000:3000
+      - 9000:9000
     volumes: 
       - .:/usr/src/app
       - /usr/src/app/node_modules
-    restart: unless-stopped
     depends_on:
       - postgres
     links:
