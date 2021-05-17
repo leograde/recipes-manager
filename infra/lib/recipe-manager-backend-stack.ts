@@ -60,8 +60,8 @@ export class RecipeManagerBackendStack extends Stack {
         DB_NAME: `${id}-database`,
         DB_HOST: database.dbInstanceEndpointAddress,
         DB_PORT: database.dbInstanceEndpointPort,
-        DB_PASSWORD: database.secret?.secretValueFromJson('password').toString() ?? '',
         DB_USERNAME: database.secret?.secretValueFromJson('username').toString() ?? '',
+        DB_PASSWORD: database.secret?.secretValueFromJson('password').toString() ?? '',
       },
     });
 

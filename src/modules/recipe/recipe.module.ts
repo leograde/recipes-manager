@@ -3,9 +3,11 @@ import { RecipeHttpModule } from '@http';
 import { RecipeApplicationModule } from '@application';
 import { RecipeDomainModule } from '@domain';
 import { RecipeInfrastructureModule } from '@infrastructure';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     RecipeHttpModule.register(
       RecipeApplicationModule.register(
         RecipeDomainModule.register(),
