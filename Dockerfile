@@ -9,3 +9,5 @@ RUN yarn add glob rimraf
 RUN yarn install
 
 COPY . .
+
+RUN yarn build
