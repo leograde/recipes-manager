@@ -1,34 +1,39 @@
-version: '3'
+version: '3.7'
+
 services:
-  nestjs:
-    container_name: nestjs_dev
-    image: nestjs_dev
+  main:
+    container_name: main
     build:
       context: .
       target: development
-      dockerfile: Dockerfile
-    command: yarn start:dev
-    environment: 
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      - DB_NAME=recipe_manager_backend_database
-      - DB_USERNAME=recipe_manager_admin
-      - DB_PASSWORD=recipe_manager_backend_database_password
-    ports: 
-      - 3000:3000
-      - 9000:9000
-    volumes: 
+    volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+      - 9229:9229
+    command: yarn start:debug
+    env_file:
+      - .env
+    networks:
+      - webnet
     depends_on:
       - postgres
-    links:
-      - postgres:postgres
   postgres:
+    container_name: postgres
     image: postgres:13-alpine
+    networks:
+      - webnet
     environment:
-        - POSTGRES_DB=recipe_manager_backend_database
-        - POSTGRES_USER=recipe_manager_admin
-        - POSTGRES_PASSWORD=recipe_manager_backend_database_password
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      PG_DATA: /var/lib/postgresql/data
     ports:
-        - 5432:5432
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+networks:
+  webnet:
+volumes:
+  pgdata:
