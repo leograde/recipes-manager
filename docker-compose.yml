@@ -1,14 +1,14 @@
 version: '3.7'
 
 services:
-  main:
-    container_name: main
+  nestjs:
+    container_name: nestjs
     build:
       context: .
-      target: development
+      target: dist-builder
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - .:/app
+      - /app/node_modules
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
       - 9229:9229
